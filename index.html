@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minijuegos - No Choques</title>
+    <title>Minijuegos Pixel Art</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Courier New', monospace;
+            background: #1a1a2e;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,28 +27,28 @@
         #container {
             text-align: center;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 20px;
         }
 
         #loginScreen {
-            background: white;
+            background: #16213e;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
-            display: block;
+            border-radius: 0;
+            border: 4px solid #0f3460;
             max-width: 400px;
             margin: 0 auto;
         }
 
         #loginScreen h1 {
-            color: #667eea;
+            color: #00ff00;
             margin-bottom: 10px;
             font-size: 32px;
+            text-shadow: 2px 2px #003300;
         }
 
         #loginScreen p {
-            color: #666;
+            color: #00cc00;
             margin-bottom: 30px;
         }
 
@@ -56,50 +59,52 @@
         .input-group input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border: 3px solid #0f3460;
+            background: #0a0e27;
+            color: #00ff00;
             font-size: 16px;
-            transition: border 0.3s;
+            font-family: 'Courier New', monospace;
         }
 
-        .input-group input:focus {
-            outline: none;
-            border-color: #667eea;
+        .input-group input::placeholder {
+            color: #00aa00;
         }
 
         .btn {
             padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
+            border: 3px solid;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
             margin: 5px;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: scale(1.05);
         }
 
         .btn-primary {
-            background: #667eea;
-            color: white;
+            background: #0f3460;
+            color: #00ff00;
+            border-color: #00ff00;
         }
 
         .btn-secondary {
-            background: #48bb78;
-            color: white;
+            background: #16213e;
+            color: #00ffff;
+            border-color: #00ffff;
         }
 
         .btn-danger {
-            background: #e53e3e;
-            color: white;
+            background: #16213e;
+            color: #ff0000;
+            border-color: #ff0000;
         }
 
         .error-msg {
-            color: #e53e3e;
+            color: #ff0000;
             margin-top: 10px;
             font-size: 14px;
         }
@@ -109,20 +114,20 @@
         }
 
         .menu-header {
-            background: white;
+            background: #16213e;
             padding: 20px;
-            border-radius: 15px;
+            border: 4px solid #0f3460;
             margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .menu-header h1 {
-            color: #667eea;
+            color: #00ff00;
             margin-bottom: 10px;
+            text-shadow: 3px 3px #003300;
         }
 
         .user-info {
-            color: #666;
+            color: #00ffff;
             font-size: 18px;
         }
 
@@ -134,17 +139,16 @@
         }
 
         .game-card {
-            background: white;
+            background: #16213e;
             padding: 30px;
-            border-radius: 15px;
+            border: 4px solid #0f3460;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
         }
 
         .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transform: scale(1.05);
+            border-color: #00ff00;
         }
 
         .game-icon {
@@ -154,23 +158,24 @@
 
         .game-title {
             font-size: 24px;
-            color: #667eea;
+            color: #00ff00;
             margin-bottom: 10px;
             font-weight: bold;
+            text-shadow: 2px 2px #003300;
         }
 
         .game-desc {
-            color: #666;
+            color: #00aaaa;
             font-size: 14px;
         }
 
         .game-highscore {
             margin-top: 10px;
             padding: 8px;
-            background: #f7fafc;
-            border-radius: 5px;
-            color: #48bb78;
+            background: #0a0e27;
+            color: #ffff00;
             font-weight: bold;
+            border: 2px solid #0f3460;
         }
 
         #gameScreen {
@@ -182,21 +187,22 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
-            color: white;
+            color: #00ff00;
             font-size: 20px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px #003300;
             flex-wrap: wrap;
+            background: #16213e;
+            padding: 10px;
+            border: 3px solid #0f3460;
         }
 
         #gameCanvas {
-            border: 4px solid white;
-            border-radius: 10px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-            background: #555;
+            border: 4px solid #00ff00;
+            background: #000;
             display: block;
             margin: 0 auto;
-            cursor: none;
+            image-rendering: pixelated;
         }
 
         .game-controls {
@@ -212,10 +218,9 @@
         }
 
         .ranking-container {
-            background: white;
+            background: #16213e;
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            border: 4px solid #0f3460;
             max-height: 80vh;
             overflow-y: auto;
         }
@@ -230,17 +235,18 @@
 
         .ranking-tab {
             padding: 10px 20px;
-            background: #e0e0e0;
-            border: none;
-            border-radius: 8px;
+            background: #0a0e27;
+            border: 3px solid #0f3460;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.3s;
+            color: #00aaaa;
+            font-family: 'Courier New', monospace;
         }
 
         .ranking-tab.active {
-            background: #667eea;
-            color: white;
+            background: #0f3460;
+            color: #00ff00;
+            border-color: #00ff00;
         }
 
         .ranking-list {
@@ -252,18 +258,17 @@
             justify-content: space-between;
             padding: 15px;
             margin-bottom: 10px;
-            background: #f7fafc;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+            background: #0a0e27;
+            border: 2px solid #0f3460;
         }
 
-        .ranking-item.top-1 { border-left-color: #ffd700; background: #fffef0; }
-        .ranking-item.top-2 { border-left-color: #c0c0c0; background: #f8f8f8; }
-        .ranking-item.top-3 { border-left-color: #cd7f32; background: #fff8f0; }
+        .ranking-item.top-1 { border-color: #ffd700; background: #1a1a00; }
+        .ranking-item.top-2 { border-color: #c0c0c0; background: #1a1a1a; }
+        .ranking-item.top-3 { border-color: #cd7f32; background: #1a0f00; }
 
         .rank-pos {
             font-weight: bold;
-            color: #667eea;
+            color: #00ff00;
             min-width: 40px;
             font-size: 18px;
         }
@@ -273,11 +278,12 @@
             text-align: left;
             padding: 0 15px;
             font-size: 16px;
+            color: #00ffff;
         }
 
         .rank-score {
             font-weight: bold;
-            color: #48bb78;
+            color: #ffff00;
             font-size: 18px;
         }
 
@@ -286,10 +292,9 @@
         }
 
         .character-editor {
-            background: white;
+            background: #16213e;
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            border: 4px solid #0f3460;
         }
 
         .character-options {
@@ -300,13 +305,13 @@
         }
 
         .option-group {
-            background: #f7fafc;
+            background: #0a0e27;
             padding: 15px;
-            border-radius: 10px;
+            border: 2px solid #0f3460;
         }
 
         .option-group h3 {
-            color: #667eea;
+            color: #00ff00;
             margin-bottom: 10px;
             font-size: 16px;
         }
@@ -314,17 +319,19 @@
         .color-picker {
             width: 100%;
             height: 40px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
+            border: 2px solid #0f3460;
             cursor: pointer;
+            background: #000;
         }
 
         select {
             width: 100%;
             padding: 8px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
+            border: 2px solid #0f3460;
             font-size: 14px;
+            background: #0a0e27;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
         }
 
         .hidden {
@@ -333,187 +340,168 @@
 
         #gameOverScreen {
             display: none;
-            background: white;
+            background: #16213e;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            border: 4px solid #ff0000;
             max-width: 500px;
             margin: 0 auto;
         }
 
         #gameOverScreen h2 {
-            color: #e53e3e;
+            color: #ff0000;
             margin-bottom: 20px;
             font-size: 36px;
+            text-shadow: 3px 3px #330000;
         }
 
         #finalScore {
             font-size: 48px;
-            color: #667eea;
+            color: #ffff00;
             margin: 20px 0;
             font-weight: bold;
-        }
-
-        @media (max-width: 600px) {
-            .game-header {
-                font-size: 16px;
-            }
-            
-            #gameCanvas {
-                max-width: 100%;
-            }
+            text-shadow: 3px 3px #333300;
         }
     </style>
 </head>
 <body>
     <div id="container">
         <div id="loginScreen">
-            <h1>🎮 Minijuegos</h1>
-            <p>¡Juega, compite y diviértete!</p>
+            <h1>👾 MINIJUEGOS</h1>
+            <p>RETRO PIXEL ART</p>
             
             <div class="input-group">
-                <input type="text" id="usernameInput" placeholder="Nombre de usuario">
+                <input type="text" id="usernameInput" placeholder="USUARIO">
             </div>
             <div class="input-group">
-                <input type="password" id="passwordInput" placeholder="Contraseña (mín. 6 caracteres)">
+                <input type="password" id="passwordInput" placeholder="CONTRASEÑA">
             </div>
             
-            <button class="btn btn-primary" onclick="login()" style="width: 100%;">Iniciar Sesión</button>
-            <button class="btn btn-secondary" onclick="register()" style="width: 100%;">Crear Cuenta</button>
+            <button class="btn btn-primary" onclick="login()" style="width: 100%;">INICIAR</button>
+            <button class="btn btn-secondary" onclick="register()" style="width: 100%;">CREAR CUENTA</button>
             
             <div id="loginError" class="error-msg"></div>
         </div>
 
         <div id="menuScreen">
             <div class="menu-header">
-                <h1>🎮 Minijuegos</h1>
+                <h1>👾 MINIJUEGOS RETRO</h1>
                 <div class="user-info">
-                    👤 <span id="menuUsername"></span>
+                    JUGADOR: <span id="menuUsername"></span>
                 </div>
             </div>
 
             <div class="games-grid">
                 <div class="game-card" onclick="selectGame('racing')">
                     <div class="game-icon">🏎️</div>
-                    <div class="game-title">Carrera Loca</div>
-                    <div class="game-desc">Esquiva los autos y llega lo más lejos posible</div>
-                    <div class="game-highscore" id="racing-highscore">Mejor: 0 pts</div>
+                    <div class="game-title">CARRERA</div>
+                    <div class="game-desc">Esquiva los autos enemigos</div>
+                    <div class="game-highscore" id="racing-highscore">RECORD: 0</div>
                 </div>
 
                 <div class="game-card" onclick="selectGame('aliens')">
-                    <div class="game-icon">👽</div>
-                    <div class="game-title">Golpea Aliens</div>
-                    <div class="game-desc">¡Aplasta aliens en 60 segundos!</div>
-                    <div class="game-highscore" id="aliens-highscore">Mejor: 0 pts</div>
+                    <div class="game-icon">👾</div>
+                    <div class="game-title">ALIENS</div>
+                    <div class="game-desc">Aplasta aliens en 60 segundos</div>
+                    <div class="game-highscore" id="aliens-highscore">RECORD: 0</div>
                 </div>
 
                 <div class="game-card" onclick="selectGame('platformer')">
-                    <div class="game-icon">🎯</div>
-                    <div class="game-title">Plataformas</div>
+                    <div class="game-icon">🎮</div>
+                    <div class="game-title">AVENTURA</div>
                     <div class="game-desc">Salta y esquiva obstáculos</div>
-                    <div class="game-highscore" id="platformer-highscore">Mejor: 0 pts</div>
+                    <div class="game-highscore" id="platformer-highscore">RECORD: 0</div>
                 </div>
             </div>
 
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn btn-primary" onclick="showRankingScreen()">🏆 Rankings</button>
-                <button class="btn btn-secondary" onclick="showCharacterScreen()">👤 Personalizar</button>
-                <button class="btn btn-danger" onclick="logout()">Cerrar Sesión</button>
+                <button class="btn btn-primary" onclick="showRankingScreen()">RANKINGS</button>
+                <button class="btn btn-secondary" onclick="showCharacterScreen()">PERSONAJE</button>
+                <button class="btn btn-danger" onclick="logout()">SALIR</button>
             </div>
         </div>
 
         <div id="gameScreen">
             <div class="game-header">
-                <div>👤 <span id="playerName"></span></div>
-                <div id="gameTitle">Juego</div>
-                <div>🏆 <span id="score">0</span></div>
-                <div id="timerDisplay" style="display: none;">⏱️ <span id="timer">60</span>s</div>
+                <div>P1: <span id="playerName"></span></div>
+                <div id="gameTitle">JUEGO</div>
+                <div>SCORE: <span id="score">0</span></div>
+                <div id="timerDisplay" style="display: none;">TIME: <span id="timer">60</span>S</div>
             </div>
-            <canvas id="gameCanvas" width="400" height="600"></canvas>
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
             <div class="game-controls">
-                <button class="btn btn-secondary" id="startGameBtn" onclick="startGame()">Iniciar Juego</button>
-                <button class="btn btn-primary" onclick="backToMenu()">← Menú</button>
+                <button class="btn btn-secondary" id="startGameBtn" onclick="startGame()">START</button>
+                <button class="btn btn-primary" onclick="backToMenu()">MENU</button>
             </div>
         </div>
 
         <div id="gameOverScreen">
-            <h2>¡Juego Terminado!</h2>
-            <div>Tu puntuación:</div>
+            <h2>GAME OVER</h2>
+            <div>SCORE FINAL:</div>
             <div id="finalScore">0</div>
-            <div id="highScoreMessage" style="color: #48bb78; font-size: 18px; margin: 10px 0;"></div>
+            <div id="highScoreMessage" style="color: #00ff00; font-size: 18px; margin: 10px 0;"></div>
             
-            <button class="btn btn-primary" onclick="playAgain()" style="width: 100%; margin-top: 20px;">Jugar de Nuevo</button>
-            <button class="btn btn-secondary" onclick="backToMenuFromGameOver()" style="width: 100%;">← Menú Principal</button>
+            <button class="btn btn-primary" onclick="playAgain()" style="width: 100%; margin-top: 20px;">REINICIAR</button>
+            <button class="btn btn-secondary" onclick="backToMenuFromGameOver()" style="width: 100%;">MENU</button>
         </div>
 
         <div id="rankingScreen">
             <div class="ranking-container">
-                <h2 style="color: #667eea; margin-bottom: 20px;">🏆 Rankings Globales</h2>
+                <h2 style="color: #00ff00; margin-bottom: 20px; text-shadow: 2px 2px #003300;">RANKINGS GLOBALES</h2>
                 
                 <div class="ranking-tabs">
-                    <button class="ranking-tab active" onclick="switchRanking('racing')">🏎️ Carreras</button>
-                    <button class="ranking-tab" onclick="switchRanking('aliens')">👽 Aliens</button>
-                    <button class="ranking-tab" onclick="switchRanking('platformer')">🎯 Plataformas</button>
+                    <button class="ranking-tab active" onclick="switchRanking('racing')">CARRERA</button>
+                    <button class="ranking-tab" onclick="switchRanking('aliens')">ALIENS</button>
+                    <button class="ranking-tab" onclick="switchRanking('platformer')">AVENTURA</button>
                 </div>
 
                 <div class="ranking-list" id="rankingList"></div>
 
-                <button class="btn btn-primary" onclick="backToMenu()" style="width: 100%; margin-top: 20px;">← Volver al Menú</button>
+                <button class="btn btn-primary" onclick="backToMenu()" style="width: 100%; margin-top: 20px;">VOLVER</button>
             </div>
         </div>
 
         <div id="characterScreen">
             <div class="character-editor">
-                <h2 style="color: #667eea; margin-bottom: 20px;">👤 Personaliza tu Personaje</h2>
+                <h2 style="color: #00ff00; margin-bottom: 20px; text-shadow: 2px 2px #003300;">PERSONALIZAR</h2>
                 
-                <canvas id="characterPreview" width="200" height="300" style="border: 2px solid #e0e0e0; border-radius: 10px; display: block; margin: 0 auto;"></canvas>
+                <canvas id="characterPreview" width="200" height="300" style="border: 3px solid #00ff00; display: block; margin: 0 auto; background: #000;"></canvas>
 
                 <div class="character-options">
                     <div class="option-group">
-                        <h3>👕 Camisa</h3>
-                        <input type="color" class="color-picker" id="shirtColor" value="#3498db" onchange="updateCharacter()">
+                        <h3>CAMISA</h3>
+                        <input type="color" class="color-picker" id="shirtColor" value="#ff0000" onchange="updateCharacter()">
                     </div>
                     <div class="option-group">
-                        <h3>👖 Pantalón</h3>
-                        <input type="color" class="color-picker" id="pantsColor" value="#2c3e50" onchange="updateCharacter()">
+                        <h3>PANTALON</h3>
+                        <input type="color" class="color-picker" id="pantsColor" value="#0000ff" onchange="updateCharacter()">
                     </div>
                     <div class="option-group">
-                        <h3>👞 Zapatos</h3>
-                        <input type="color" class="color-picker" id="shoesColor" value="#000000" onchange="updateCharacter()">
+                        <h3>ZAPATOS</h3>
+                        <input type="color" class="color-picker" id="shoesColor" value="#8b4513" onchange="updateCharacter()">
                     </div>
                     <div class="option-group">
-                        <h3>🧢 Gorra</h3>
+                        <h3>GORRA</h3>
                         <select id="hatStyle" onchange="updateCharacter()">
-                            <option value="none">Sin gorra</option>
-                            <option value="cap">Gorra</option>
-                            <option value="beanie">Gorro</option>
-                            <option value="cowboy">Vaquero</option>
+                            <option value="none">NINGUNA</option>
+                            <option value="cap">GORRA</option>
+                            <option value="mario">MARIO</option>
                         </select>
-                        <input type="color" class="color-picker" id="hatColor" value="#e74c3c" onchange="updateCharacter()">
-                    </div>
-                    <div class="option-group">
-                        <h3>🎒 Accesorio</h3>
-                        <select id="accessory" onchange="updateCharacter()">
-                            <option value="none">Ninguno</option>
-                            <option value="backpack">Mochila</option>
-                            <option value="cape">Capa</option>
-                            <option value="wings">Alas</option>
-                        </select>
+                        <input type="color" class="color-picker" id="hatColor" value="#ff0000" onchange="updateCharacter()">
                     </div>
                 </div>
 
-                <button class="btn btn-primary" onclick="saveCharacter()" style="width: 100%; margin-top: 20px;">Guardar</button>
-                <button class="btn btn-secondary" onclick="backToMenu()" style="width: 100%;">← Volver</button>
+                <button class="btn btn-primary" onclick="saveCharacter()" style="width: 100%; margin-top: 20px;">GUARDAR</button>
+                <button class="btn btn-secondary" onclick="backToMenu()" style="width: 100%;">VOLVER</button>
             </div>
         </div>
 
-        <div class="loading hidden" id="loading">Cargando...</div>
+        <div class="loading hidden" id="loading" style="color: #00ff00;">CARGANDO...</div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, orderBy, limit, getDocs, where, setDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, limit, getDocs, where, setDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDTn_VTTMznvVJIZSjKhGOkvSOQQthNSfk",
@@ -521,8 +509,7 @@
             projectId: "no-choques",
             storageBucket: "no-choques.firebasestorage.app",
             messagingSenderId: "222726589609",
-            appId: "1:222726589609:web:59e6dd00f28be661b0edb8",
-            measurementId: "G-B7XYP5MN52"
+            appId: "1:222726589609:web:59e6dd00f28be661b0edb8"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -537,53 +524,188 @@
         let gameLoop;
         let userHighScores = { racing: 0, aliens: 0, platformer: 0 };
         let characterCustomization = {
-            shirtColor: '#3498db',
-            pantsColor: '#2c3e50',
-            shoesColor: '#000000',
+            shirtColor: '#ff0000',
+            pantsColor: '#0000ff',
+            shoesColor: '#8b4513',
             hatStyle: 'none',
-            hatColor: '#e74c3c',
-            accessory: 'none'
+            hatColor: '#ff0000'
         };
 
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
 
-        function createEmojiImage(emoji, size = 64) {
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = size;
-            tempCanvas.height = size;
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCtx.font = `${size}px Arial`;
-            tempCtx.textAlign = 'center';
-            tempCtx.textBaseline = 'middle';
-            tempCtx.fillText(emoji, size / 2, size / 2);
-            return tempCanvas;
+        // Dibujar alien pixel art
+        function drawPixelAlien(x, y, size = 40) {
+            const pixels = [
+                [0,0,1,1,1,1,1,1,1,1,0,0],
+                [0,1,1,1,1,1,1,1,1,1,1,0],
+                [1,1,0,1,1,1,1,1,1,0,1,1],
+                [1,1,0,1,1,1,1,1,1,0,1,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,1,1,0,0,0,0,0,0,1,1,1],
+                [1,1,1,0,0,0,0,0,0,1,1,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1],
+                [0,1,1,1,1,1,1,1,1,1,1,0],
+                [0,0,1,1,1,1,1,1,1,1,0,0]
+            ];
+            
+            const pixelSize = size / 12;
+            pixels.forEach((row, i) => {
+                row.forEach((pixel, j) => {
+                    if (pixel === 1) {
+                        ctx.fillStyle = '#00ff00';
+                        ctx.fillRect(x + j * pixelSize, y + i * pixelSize, pixelSize, pixelSize);
+                        
+                        // Sombra para darle profundidad
+                        if (i < pixels.length - 1 && j < row.length - 1) {
+                            if (pixels[i + 1][j] === 0 || pixels[i][j + 1] === 0) {
+                                ctx.fillStyle = '#00aa00';
+                                ctx.fillRect(x + j * pixelSize, y + i * pixelSize, pixelSize, pixelSize);
+                            }
+                        }
+                    } else if (pixel === 0 && i >= 2 && i <= 3 && j >= 2 && j <= 3) {
+                        // Ojos negros
+                        ctx.fillStyle = '#000';
+                        ctx.fillRect(x + j * pixelSize, y + i * pixelSize, pixelSize, pixelSize);
+                    } else if (pixel === 0 && i >= 2 && i <= 3 && j >= 8 && j <= 9) {
+                        // Ojos negros
+                        ctx.fillStyle = '#000';
+                        ctx.fillRect(x + j * pixelSize, y + i * pixelSize, pixelSize, pixelSize);
+                    }
+                });
+            });
         }
 
-        const carImage = createEmojiImage('🚗', 80);
-        const policeCarImage = createEmojiImage('🚓', 80);
-        const taxiImage = createEmojiImage('🚕', 80);
-        const truckImage = createEmojiImage('🚚', 80);
-        const alienImage = createEmojiImage('👽', 60);
-        const ufoImage = createEmojiImage('🛸', 80);
-        const hammerImage = createEmojiImage('🔨', 50);
-        const explosionImage = createEmojiImage('💥', 60);
-        const coinImage = createEmojiImage('🪙', 40);
-        const obstacleImage = createEmojiImage('🚧', 40);
-        const treeImage = createEmojiImage('🌳', 60);
-        const cloudImage = createEmojiImage('☁️', 80);
-        const sunImage = createEmojiImage('☀️', 60);
-        const grassImage = createEmojiImage('🌱', 30);
+        // Dibujar carro pixel art
+        function drawPixelCar(x, y, color = '#ff0000', isPlayer = false) {
+            const w = 30, h = 50;
+            
+            // Cuerpo
+            ctx.fillStyle = color;
+            ctx.fillRect(x + 8, y, 14, 40);
+            ctx.fillRect(x + 5, y + 10, 20, 30);
+            
+            // Ventanas
+            ctx.fillStyle = isPlayer ? '#00ffff' : '#4a90e2';
+            ctx.fillRect(x + 10, y + 5, 10, 8);
+            ctx.fillRect(x + 10, y + 27, 10, 8);
+            
+            // Ruedas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(x, y + 8, 5, 8);
+            ctx.fillRect(x + 25, y + 8, 5, 8);
+            ctx.fillRect(x, y + 34, 5, 8);
+            ctx.fillRect(x + 25, y + 34, 5, 8);
+            
+            // Luces
+            if (isPlayer) {
+                ctx.fillStyle = '#ffff00';
+                ctx.fillRect(x + 8, y + 42, 4, 3);
+                ctx.fillRect(x + 18, y + 42, 4, 3);
+            }
+        }
 
-        let explosions = [];
-        let coins = [];
-        let decorations = { clouds: [], trees: [] };
+        // Crear fondo pixelado de carretera
+        function drawPixelRoad() {
+            // Césped
+            for (let x = 0; x < 200; x += 20) {
+                for (let y = 0; y < canvas.height; y += 20) {
+                    ctx.fillStyle = (x + y) % 40 === 0 ? '#00aa00' : '#008800';
+                    ctx.fillRect(x, y, 20, 20);
+                }
+            }
+            for (let x = 600; x < 800; x += 20) {
+                for (let y = 0; y < canvas.height; y += 20) {
+                    ctx.fillStyle = (x + y) % 40 === 0 ? '#00aa00' : '#008800';
+                    ctx.fillRect(x, y, 20, 20);
+                }
+            }
+            
+            // Carretera
+            ctx.fillStyle = '#333';
+            ctx.fillRect(200, 0, 400, canvas.height);
+            
+            // Líneas laterales
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(200, 0, 8, canvas.height);
+            ctx.fillRect(592, 0, 8, canvas.height);
+        }
+
+        // Crear fondo pixelado de tierra (aliens)
+        function drawPixelGround() {
+            for (let x = 0; x < canvas.width; x += 20) {
+                for (let y = 0; y < canvas.height; y += 20) {
+                    const shade = Math.random() > 0.5 ? '#8b4513' : '#654321';
+                    ctx.fillStyle = shade;
+                    ctx.fillRect(x, y, 20, 20);
+                }
+            }
+        }
+
+        // Crear fondo pixelado de cielo (platformer)
+        function drawPixelSky(cameraX) {
+            // Cielo
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#5080ff');
+            gradient.addColorStop(1, '#80b0ff');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Nubes pixeladas
+            const clouds = [100, 300, 500, 700, 900, 1200, 1500];
+            clouds.forEach(cloudX => {
+                const x = (cloudX - cameraX * 0.3) % (canvas.width + 200);
+                drawPixelCloud(x, 50 + Math.sin(cloudX) * 30);
+            });
+        }
+
+        function drawPixelCloud(x, y) {
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(x, y + 8, 40, 16);
+            ctx.fillRect(x + 8, y, 24, 32);
+            ctx.fillRect(x - 8, y + 12, 16, 12);
+            ctx.fillRect(x + 40, y + 12, 16, 12);
+        }
+
+        // Dibujar personaje pixel art
+        function drawPixelCharacter(x, y, facing = 'right') {
+            const c = characterCustomization;
+            
+            // Zapatos
+            ctx.fillStyle = c.shoesColor;
+            ctx.fillRect(x + 4, y + 28, 6, 4);
+            ctx.fillRect(x + 14, y + 28, 6, 4);
+            
+            // Piernas (pantalón)
+            ctx.fillStyle = c.pantsColor;
+            ctx.fillRect(x + 4, y + 18, 6, 10);
+            ctx.fillRect(x + 14, y + 18, 6, 10);
+            
+            // Cuerpo (camisa)
+            ctx.fillStyle = c.shirtColor;
+            ctx.fillRect(x + 4, y + 10, 16, 8);
+            
+            // Cabeza
+            ctx.fillStyle = '#ffcc99';
+            ctx.fillRect(x + 6, y, 12, 12);
+            
+            // Ojos
+            ctx.fillStyle = '#000';
+            ctx.fillRect(x + 8, y + 4, 2, 2);
+            ctx.fillRect(x + 14, y + 4, 2, 2);
+            
+            // Gorra
+            if (c.hatStyle === 'cap' || c.hatStyle === 'mario') {
+                ctx.fillStyle = c.hatColor;
+                ctx.fillRect(x + 4, y - 4, 16, 6);
+                ctx.fillRect(x + 2, y, 20, 4);
+            }
+        }
 
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 currentUser = user;
-                document.getElementById('loading').classList.remove('hidden');
-                
                 try {
                     const userDoc = await getDoc(doc(db, "users", user.uid));
                     if (userDoc.exists()) {
@@ -600,12 +722,10 @@
                             createdAt: new Date()
                         });
                     }
-                    document.getElementById('loading').classList.add('hidden');
                     showMenuScreen();
                 } catch (error) {
                     console.error("Error:", error);
                     currentUsername = user.email.split('@')[0];
-                    document.getElementById('loading').classList.add('hidden');
                     showMenuScreen();
                 }
             } else {
@@ -619,17 +739,17 @@
             const errorDiv = document.getElementById('loginError');
 
             if (!username || !password) {
-                errorDiv.textContent = 'Por favor completa todos los campos';
+                errorDiv.textContent = 'COMPLETA TODOS LOS CAMPOS';
                 return;
             }
 
             if (username.length < 3) {
-                errorDiv.textContent = 'El nombre de usuario debe tener al menos 3 caracteres';
+                errorDiv.textContent = 'USUARIO MUY CORTO';
                 return;
             }
 
             if (password.length < 6) {
-                errorDiv.textContent = 'La contraseña debe tener al menos 6 caracteres';
+                errorDiv.textContent = 'CONTRASEÑA MUY CORTA';
                 return;
             }
 
@@ -638,11 +758,11 @@
                 const usernameSnapshot = await getDocs(usernameQuery);
                 
                 if (!usernameSnapshot.empty) {
-                    errorDiv.textContent = 'Este nombre de usuario ya está en uso';
+                    errorDiv.textContent = 'USUARIO EN USO';
                     return;
                 }
 
-                const email = `${username.toLowerCase().replace(/[^a-z0-9]/g, '')}@minijuegosapp.com`;
+                const email = `${username.toLowerCase().replace(/[^a-z0-9]/g, '')}@pixelgames.com`;
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 
                 await setDoc(doc(db, "users", userCredential.user.uid), {
@@ -655,7 +775,7 @@
                 errorDiv.textContent = '';
             } catch (error) {
                 console.error('Error:', error);
-                errorDiv.textContent = 'Error al crear cuenta';
+                errorDiv.textContent = 'ERROR AL CREAR CUENTA';
             }
         };
 
@@ -665,18 +785,18 @@
             const errorDiv = document.getElementById('loginError');
 
             if (!username || !password) {
-                errorDiv.textContent = 'Por favor completa todos los campos';
+                errorDiv.textContent = 'COMPLETA TODOS LOS CAMPOS';
                 return;
             }
 
-            errorDiv.textContent = 'Iniciando sesión...';
+            errorDiv.textContent = 'CONECTANDO...';
 
             try {
-                const email = `${username.toLowerCase().replace(/[^a-z0-9]/g, '')}@minijuegosapp.com`;
+                const email = `${username.toLowerCase().replace(/[^a-z0-9]/g, '')}@pixelgames.com`;
                 await signInWithEmailAndPassword(auth, email, password);
                 errorDiv.textContent = '';
             } catch (error) {
-                errorDiv.textContent = 'Usuario o contraseña incorrectos';
+                errorDiv.textContent = 'USUARIO O CLAVE INCORRECTOS';
             }
         };
 
@@ -703,9 +823,9 @@
             document.getElementById('characterScreen').style.display = 'none';
             document.getElementById('menuUsername').textContent = currentUsername;
             
-            document.getElementById('racing-highscore').textContent = `Mejor: ${userHighScores.racing} pts`;
-            document.getElementById('aliens-highscore').textContent = `Mejor: ${userHighScores.aliens} pts`;
-            document.getElementById('platformer-highscore').textContent = `Mejor: ${userHighScores.platformer} pts`;
+            document.getElementById('racing-highscore').textContent = `RECORD: ${userHighScores.racing}`;
+            document.getElementById('aliens-highscore').textContent = `RECORD: ${userHighScores.aliens}`;
+            document.getElementById('platformer-highscore').textContent = `RECORD: ${userHighScores.platformer}`;
         }
 
         function showGameScreen() {
@@ -743,9 +863,9 @@
             showGameScreen();
             
             const titles = {
-                racing: '🏎️ Carrera Loca',
-                aliens: '👽 Golpea Aliens',
-                platformer: '🎯 Plataformas'
+                racing: 'CARRERA LOCA',
+                aliens: 'INVASION ALIEN',
+                platformer: 'AVENTURA RETRO'
             };
             
             document.getElementById('gameTitle').textContent = titles[game];
@@ -760,37 +880,589 @@
         };
 
         function drawGameIdle() {
-            ctx.fillStyle = '#555';
+            ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#fff';
-            ctx.font = '24px Arial';
+            ctx.fillStyle = '#00ff00';
+            ctx.font = '24px "Courier New"';
             ctx.textAlign = 'center';
-            ctx.fillText('Presiona "Iniciar Juego"', canvas.width/2, canvas.height/2);
+            ctx.fillText('PRESIONA START', canvas.width/2, canvas.height/2);
         }
 
-        let racingPlayer = { x: 175, y: 520, width: 50, height: 80, speed: 7 };
+        // ========== JUEGO: CARRERA ==========
+        let racingPlayer = { x: 385, y: 500, width: 30, height: 50 };
         let cars = [];
         let roadLines = [];
         let keysPressed = {};
 
         function initRacingGame() {
-            racingPlayer = { x: 175, y: 520, width: 50, height: 80, speed: 7 };
+            racingPlayer = { x: 385, y: 500, width: 30, height: 50 };
             cars = [];
             roadLines = [];
             keysPressed = {};
-            explosions = [];
-            decorations.clouds = [
-                { x: 50, y: 50, speed: 0.3 },
-                { x: 200, y: 80, speed: 0.5 },
-                { x: 350, y: 40, speed: 0.4 }
-            ];
-            for (let i = 0; i < 6; i++) {
-                roadLines.push({ y: i * 120 });
+            for (let i = 0; i < 8; i++) {
+                roadLines.push({ y: i * 100 });
             }
         }
 
         function updateRacingGame() {
-            if (keysPressed['ArrowLeft'] && racingPlayer.x > 60) {
-                racingPlayer.x -= racingPlayer.speed;
+            if (keysPressed['ArrowLeft'] && racingPlayer.x > 210) {
+                racingPlayer.x -= 5;
             }
-            if (keysPressed['ArrowRight'] && racingPlayer.x <
+            if (keysPressed['ArrowRight'] && racingPlayer.x < 560) {
+                racingPlayer.x += 5;
+            }
+
+            roadLines.forEach(line => {
+                line.y += 6;
+                if (line.y > canvas.height) line.y = -20;
+            });
+
+            if (Math.random() < 0.02) {
+                const lanes = [250, 350, 450, 550];
+                const lane = lanes[Math.floor(Math.random() * lanes.length)];
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+                cars.push({
+                    x: lane,
+                    y: -60,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+
+            cars = cars.filter(car => {
+                car.y += 6;
+                
+                if (car.y > canvas.height) {
+                    score += 10;
+                    document.getElementById('score').textContent = score;
+                    return false;
+                }
+
+                if (checkCollision(
+                    {x: racingPlayer.x, y: racingPlayer.y, width: 30, height: 50},
+                    {x: car.x, y: car.y, width: 30, height: 50}
+                )) {
+                    endGame();
+                    return false;
+                }
+                return true;
+            });
+
+            drawRacingGame();
+        }
+
+        function drawRacingGame() {
+            drawPixelRoad();
+
+            // Líneas centrales
+            roadLines.forEach(line => {
+                ctx.fillStyle = '#ffff00';
+                ctx.fillRect(350, line.y, 8, 50);
+                ctx.fillRect(450, line.y, 8, 50);
+            });
+
+            cars.forEach(car => {
+                drawPixelCar(car.x, car.y, car.color, false);
+            });
+
+            drawPixelCar(racingPlayer.x, racingPlayer.y, '#00ffff', true);
+        }
+
+        // ========== JUEGO: ALIENS ==========
+        let aliens = [];
+        let timeLeft = 60;
+        let alienTimer;
+        let mousePos = { x: 0, y: 0 };
+
+        function initAliensGame() {
+            aliens = [];
+            timeLeft = 60;
+            mousePos = { x: 0, y: 0 };
+            document.getElementById('timer').textContent = timeLeft;
+            
+            alienTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function updateAliensGame() {
+            if (Math.random() < 0.03) {
+                const holes = [];
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        holes.push({x: 150 + j * 250, y: 150 + i * 200});
+                    }
+                }
+                
+                const availableHoles = holes.filter(hole => 
+                    !aliens.some(a => a.x === hole.x && a.y === hole.y && !a.isUFO)
+                );
+                
+                if (availableHoles.length > 0 && aliens.filter(a => !a.isUFO).length < 6) {
+                    const hole = availableHoles[Math.floor(Math.random() * availableHoles.length)];
+                    aliens.push({
+                        x: hole.x,
+                        y: hole.y,
+                        timer: Math.random() * 80 + 60,
+                        offsetY: 0,
+                        rising: true
+                    });
+                }
+            }
+
+            if (Math.random() < 0.008) {
+                aliens.push({
+                    x: -80,
+                    y: 50 + Math.random() * 100,
+                    isUFO: true,
+                    speed: 3
+                });
+            }
+
+            aliens = aliens.filter(alien => {
+                if (alien.isUFO) {
+                    alien.x += alien.speed;
+                    return alien.x < canvas.width + 80;
+                }
+                
+                alien.timer--;
+                
+                if (alien.rising) {
+                    alien.offsetY += 1.5;
+                    if (alien.offsetY >= 40) {
+                        alien.rising = false;
+                    }
+                } else if (alien.timer < 15) {
+                    alien.offsetY -= 2;
+                }
+                
+                return alien.timer > 0 && alien.offsetY >= 0;
+            });
+
+            drawAliensGame();
+        }
+
+        function drawAliensGame() {
+            drawPixelGround();
+
+            const holes = [];
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    holes.push({x: 150 + j * 250, y: 150 + i * 200});
+                }
+            }
+            
+            holes.forEach(hole => {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(hole.x - 30, hole.y, 60, 8);
+                ctx.fillRect(hole.x - 25, hole.y - 4, 50, 12);
+            });
+
+            aliens.forEach(alien => {
+                if (alien.isUFO) {
+                    // OVNI pixel art
+                    ctx.fillStyle = '#c0c0c0';
+                    ctx.fillRect(alien.x + 10, alien.y + 10, 40, 8);
+                    ctx.fillRect(alien.x + 5, alien.y + 8, 50, 4);
+                    ctx.fillRect(alien.x + 15, alien.y, 30, 8);
+                    
+                    ctx.fillStyle = '#00ffff';
+                    ctx.fillRect(alien.x + 20, alien.y + 18, 6, 6);
+                    ctx.fillRect(alien.x + 34, alien.y + 18, 6, 6);
+                } else {
+                    drawPixelAlien(alien.x - 24, alien.y - alien.offsetY - 40, 48);
+                }
+            });
+
+            // Cursor de mira
+            ctx.strokeStyle = '#ff0000';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(mousePos.x - 15, mousePos.y);
+            ctx.lineTo(mousePos.x + 15, mousePos.y);
+            ctx.moveTo(mousePos.x, mousePos.y - 15);
+            ctx.lineTo(mousePos.x, mousePos.y + 15);
+            ctx.stroke();
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mousePos.x = (e.clientX - rect.left) * (canvas.width / rect.width);
+            mousePos.y = (e.clientY - rect.top) * (canvas.height / rect.height);
+        });
+
+        canvas.addEventListener('click', (e) => {
+            if (currentGame !== 'aliens' || !gameRunning) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const clickX = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const clickY = (e.clientY - rect.top) * (canvas.height / rect.height);
+            
+            aliens = aliens.filter(alien => {
+                if (alien.isUFO) return true;
+                
+                const dist = Math.sqrt((clickX - alien.x) ** 2 + (clickY - (alien.y - alien.offsetY)) ** 2);
+                if (dist < 40) {
+                    score += 10;
+                    document.getElementById('score').textContent = score;
+                    return false;
+                }
+                return true;
+            });
+        });
+
+        // ========== JUEGO: PLATFORMER ==========
+        let platformPlayer = {
+            x: 400,
+            y: 500,
+            width: 24,
+            height: 32,
+            velocityY: 0,
+            jumping: false,
+            gravity: 0.6,
+            jumpForce: -13
+        };
+        let platforms = [];
+        let obstacles = [];
+        let coins = [];
+        let cameraX = 0;
+        let worldX = 0;
+
+        function initPlatformerGame() {
+            platformPlayer = {
+                x: 400,
+                y: 500,
+                width: 24,
+                height: 32,
+                velocityY: 0,
+                jumping: false,
+                gravity: 0.6,
+                jumpForce: -13
+            };
+            
+            platforms = [];
+            obstacles = [];
+            coins = [];
+            cameraX = 0;
+            worldX = 0;
+            
+            // Crear nivel largo
+            for (let i = 0; i < 200; i++) {
+                const x = i * 150;
+                const y = 550 - Math.sin(i * 0.3) * 100;
+                
+                platforms.push({
+                    x: x,
+                    y: y,
+                    width: 200,
+                    height: 20
+                });
+                
+                if (i > 2 && Math.random() > 0.6) {
+                    obstacles.push({
+                        x: x + 100,
+                        y: y - 40,
+                        width: 20,
+                        height: 20
+                    });
+                }
+                
+                if (Math.random() > 0.7) {
+                    coins.push({
+                        x: x + 75,
+                        y: y - 80,
+                        collected: false
+                    });
+                }
+            }
+        }
+
+        function updatePlatformerGame() {
+            const oldX = worldX;
+            
+            if (keysPressed['ArrowRight']) {
+                worldX += 5;
+                score += 1;
+                document.getElementById('score').textContent = Math.floor(score);
+            }
+            if (keysPressed['ArrowLeft'] && worldX > 0) {
+                worldX -= 3;
+            }
+            if ((keysPressed['ArrowUp'] || keysPressed[' ']) && !platformPlayer.jumping) {
+                platformPlayer.velocityY = platformPlayer.jumpForce;
+                platformPlayer.jumping = true;
+            }
+
+            platformPlayer.velocityY += platformPlayer.gravity;
+            platformPlayer.y += platformPlayer.velocityY;
+
+            if (platformPlayer.y > canvas.height) {
+                endGame();
+                return;
+            }
+
+            platforms.forEach(platform => {
+                const relativeX = platform.x - worldX;
+                if (platformPlayer.velocityY >= 0 &&
+                    platformPlayer.x + platformPlayer.width > relativeX &&
+                    platformPlayer.x < relativeX + platform.width &&
+                    platformPlayer.y + platformPlayer.height >= platform.y &&
+                    platformPlayer.y + platformPlayer.height <= platform.y + 20) {
+                    
+                    platformPlayer.y = platform.y - platformPlayer.height;
+                    platformPlayer.velocityY = 0;
+                    platformPlayer.jumping = false;
+                }
+            });
+
+            obstacles.forEach(obstacle => {
+                const relativeX = obstacle.x - worldX;
+                if (platformPlayer.x < relativeX + obstacle.width &&
+                    platformPlayer.x + platformPlayer.width > relativeX &&
+                    platformPlayer.y < obstacle.y + obstacle.height &&
+                    platformPlayer.y + platformPlayer.height > obstacle.y) {
+                    endGame();
+                }
+            });
+
+            coins.forEach(coin => {
+                if (!coin.collected) {
+                    const relativeX = coin.x - worldX;
+                    if (platformPlayer.x < relativeX + 16 &&
+                        platformPlayer.x + platformPlayer.width > relativeX &&
+                        platformPlayer.y < coin.y + 16 &&
+                        platformPlayer.y + platformPlayer.height > coin.y) {
+                        coin.collected = true;
+                        score += 50;
+                        document.getElementById('score').textContent = Math.floor(score);
+                    }
+                }
+            });
+
+            drawPlatformerGame();
+        }
+
+        function drawPlatformerGame() {
+            drawPixelSky(worldX);
+
+            ctx.save();
+
+            // Plataformas
+            platforms.forEach(platform => {
+                const x = platform.x - worldX;
+                if (x > -300 && x < canvas.width + 100) {
+                    // Césped
+                    ctx.fillStyle = '#00ff00';
+                    ctx.fillRect(x, platform.y - 4, platform.width, 4);
+                    
+                    // Tierra
+                    ctx.fillStyle = '#8b4513';
+                    ctx.fillRect(x, platform.y, platform.width, platform.height);
+                    
+                    // Textura
+                    for (let i = 0; i < platform.width; i += 20) {
+                        for (let j = 0; j < platform.height; j += 20) {
+                            if (Math.random() > 0.7) {
+                                ctx.fillStyle = '#654321';
+                                ctx.fillRect(x + i, platform.y + j, 8, 8);
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Obstáculos
+            obstacles.forEach(obstacle => {
+                const x = obstacle.x - worldX;
+                if (x > -100 && x < canvas.width + 100) {
+                    ctx.fillStyle = '#ff0000';
+                    ctx.fillRect(x, obstacle.y, obstacle.width, obstacle.height);
+                    
+                    ctx.fillStyle = '#aa0000';
+                    ctx.fillRect(x + 2, obstacle.y + 2, obstacle.width - 4, obstacle.height - 4);
+                }
+            });
+
+            // Monedas
+            coins.forEach(coin => {
+                if (!coin.collected) {
+                    const x = coin.x - worldX;
+                    if (x > -100 && x < canvas.width + 100) {
+                        ctx.fillStyle = '#ffff00';
+                        ctx.fillRect(x + 4, coin.y, 8, 16);
+                        ctx.fillRect(x, coin.y + 4, 16, 8);
+                        
+                        ctx.fillStyle = '#ffaa00';
+                        ctx.fillRect(x + 6, coin.y + 6, 4, 4);
+                    }
+                }
+            });
+
+            // Personaje siempre en el centro
+            drawPixelCharacter(platformPlayer.x, platformPlayer.y, 'right');
+
+            ctx.restore();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!gameRunning) return;
+            keysPressed[e.key] = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('keyup', (e) => {
+            keysPressed[e.key] = false;
+        });
+
+        function checkCollision(rect1, rect2) {
+            return rect1.x < rect2.x + rect2.width &&
+                   rect1.x + rect1.width > rect2.x &&
+                   rect1.y < rect2.y + rect2.height &&
+                   rect1.y + rect1.height > rect2.y;
+        }
+
+        window.startGame = function() {
+            if (gameRunning) return;
+            
+            gameRunning = true;
+            score = 0;
+            document.getElementById('score').textContent = '0';
+            document.getElementById('startGameBtn').style.display = 'none';
+            
+            if (currentGame === 'racing') {
+                initRacingGame();
+                gameLoop = setInterval(updateRacingGame, 1000 / 60);
+            } else if (currentGame === 'aliens') {
+                initAliensGame();
+                gameLoop = setInterval(updateAliensGame, 1000 / 60);
+            } else if (currentGame === 'platformer') {
+                initPlatformerGame();
+                gameLoop = setInterval(updatePlatformerGame, 1000 / 60);
+            }
+        };
+
+        function stopGame() {
+            gameRunning = false;
+            clearInterval(gameLoop);
+            clearInterval(alienTimer);
+            keysPressed = {};
+            document.getElementById('startGameBtn').style.display = 'inline-block';
+        }
+
+        async function endGame() {
+            stopGame();
+            
+            const isNewHighScore = score > userHighScores[currentGame];
+            
+            if (isNewHighScore) {
+                userHighScores[currentGame] = score;
+                
+                await updateDoc(doc(db, "users", currentUser.uid), {
+                    [`highScores.${currentGame}`]: score
+                });
+                
+                document.getElementById('highScoreMessage').textContent = 'NUEVO RECORD!';
+            } else {
+                document.getElementById('highScoreMessage').textContent = '';
+            }
+            
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('gameOverScreen').style.display = 'block';
+        }
+
+        window.playAgain = function() {
+            document.getElementById('gameOverScreen').style.display = 'none';
+            showGameScreen();
+            startGame();
+        };
+
+        window.switchRanking = async function(game) {
+            document.querySelectorAll('.ranking-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            try {
+                const q = query(collection(db, "users"), orderBy(`highScores.${game}`, "desc"), limit(20));
+                const querySnapshot = await getDocs(q);
+                
+                const rankingList = document.getElementById('rankingList');
+                rankingList.innerHTML = '';
+                
+                let position = 1;
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const gameScore = data.highScores?.[game] || 0;
+                    
+                    if (gameScore > 0) {
+                        const item = document.createElement('div');
+                        item.className = `ranking-item ${position <= 3 ? 'top-' + position : ''}`;
+                        item.innerHTML = `
+                            <span class="rank-pos">${position}</span>
+                            <span class="rank-name">${data.username}</span>
+                            <span class="rank-score">${gameScore}</span>
+                        `;
+                        rankingList.appendChild(item);
+                        position++;
+                    }
+                });
+                
+                if (position === 1) {
+                    rankingList.innerHTML = '<p style="text-align: center; color: #00aa00;">NO HAY PUNTUACIONES</p>';
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
+
+        function loadCharacterEditor() {
+            document.getElementById('shirtColor').value = characterCustomization.shirtColor;
+            document.getElementById('pantsColor').value = characterCustomization.pantsColor;
+            document.getElementById('shoesColor').value = characterCustomization.shoesColor;
+            document.getElementById('hatStyle').value = characterCustomization.hatStyle;
+            document.getElementById('hatColor').value = characterCustomization.hatColor;
+            updateCharacter();
+        }
+
+        window.updateCharacter = function() {
+            characterCustomization = {
+                shirtColor: document.getElementById('shirtColor').value,
+                pantsColor: document.getElementById('pantsColor').value,
+                shoesColor: document.getElementById('shoesColor').value,
+                hatStyle: document.getElementById('hatStyle').value,
+                hatColor: document.getElementById('hatColor').value
+            };
+            
+            const previewCanvas = document.getElementById('characterPreview');
+            const previewCtx = previewCanvas.getContext('2d');
+            previewCtx.imageSmoothingEnabled = false;
+            
+            previewCtx.fillStyle = '#000';
+            previewCtx.fillRect(0, 0, 200, 300);
+            
+            previewCtx.save();
+            previewCtx.translate(76, 120);
+            previewCtx.scale(3, 3);
+            drawPixelCharacter(0, 0, 'right');
+            previewCtx.restore();
+        };
+
+        window.saveCharacter = async function() {
+            try {
+                await updateDoc(doc(db, "users", currentUser.uid), {
+                    character: characterCustomization
+                });
+                alert('PERSONAJE GUARDADO!');
+                backToMenu();
+            } catch (error) {
+                console.error("Error:", error);
+                alert('ERROR AL GUARDAR');
+            }
+        };
+    </script>
+</body>
+</html>
