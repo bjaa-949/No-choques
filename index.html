@@ -775,7 +775,7 @@
     <div id="loginScreen">
         <div class="login-box">
             <h1>🌍 PIXEL WORLD</h1>
-            <p>Mundo Multijugador Online - Versión Mejorada</p>
+            <p>Mundo Multijugador Online</p>
             
             <div class="input-group">
                 <input type="text" id="usernameInput" placeholder="NOMBRE DE USUARIO">
@@ -958,6 +958,21 @@ let worldData = {
     sleepingPlayers: 0,
     onlinePlayers: 0
 };
+
+// ==================== FUNCIÓN SHOW NOTIFICATION ====================
+function showNotification(message) {
+    const notifications = document.getElementById('notifications');
+    if (!notifications) return;
+
+    const notif = document.createElement('div');
+    notif.className = 'notification';
+    notif.textContent = message;
+    notifications.appendChild(notif);
+
+    setTimeout(() => {
+        notif.remove();
+    }, 3000);
+}
 
 // ==================== CONFIGURACIÓN DEL MUNDO MEJORADA ====================
 const TILE_SIZE = 16;
